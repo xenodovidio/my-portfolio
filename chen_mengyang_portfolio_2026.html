@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>陈梦阳 · Design Portfolio 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --bg:#f0f2f7;
+    --white:#ffffff;
+    --text:#1a1a1a;
+    --muted:#8a8a8a;
+    --border:rgba(0,0,0,0.08);
+    --accent:#4B6FD4;
+    --accent-light:#e8edf9;
+    --card:#ffffff;
+    --tag-bg:#f0f2f7;
+  }
+  html{scroll-behavior:smooth}
+  body{font-family:'Noto Sans SC',sans-serif;background:var(--bg);color:var(--text);font-size:14px;overflow-x:hidden}
+
+  /* NAV */
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:56px;background:rgba(240,242,247,0.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+  .nav-logo{font-family:'Playfair Display',serif;font-size:17px;letter-spacing:0.02em;color:var(--text)}
+  .nav-links{display:flex;gap:28px}
+  .nav-links a{text-decoration:none;color:var(--muted);font-size:13px;font-weight:400;cursor:pointer;transition:color 0.2s;letter-spacing:0.03em}
+  .nav-links a:hover,.nav-links a.active{color:var(--text)}
+
+  /* SECTIONS */
+  section{padding:80px 48px;max-width:1100px;margin:0 auto}
+
+  /* HERO */
+  #hero{padding-top:140px;padding-bottom:80px;position:relative}
+  .hero-year{font-family:'Playfair Display',serif;font-size:clamp(80px,12vw,160px);font-weight:400;line-height:1;color:var(--text);letter-spacing:-0.03em;display:block}
+  .hero-sub{font-size:clamp(20px,4vw,40px);font-weight:300;color:var(--text);letter-spacing:0.02em;margin-top:-8px}
+  .hero-tag{display:inline-block;margin-top:24px;font-size:13px;color:var(--muted);letter-spacing:0.05em;border:1px solid var(--border);padding:6px 16px;border-radius:20px;background:var(--white)}
+  .hero-dot{position:absolute;top:120px;right:48px;width:56px;height:56px;border-radius:50%;background:var(--accent);opacity:0.8}
+  .hero-scroll{margin-top:60px;display:flex;align-items:center;gap:10px;color:var(--muted);font-size:12px;letter-spacing:0.08em;cursor:pointer}
+  .scroll-line{width:40px;height:1px;background:var(--muted)}
+
+  /* SECTION LABEL */
+  .section-label{font-size:12px;color:var(--muted);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:32px;display:flex;align-items:center;gap:12px}
+  .section-label::after{content:'';flex:0 0 40px;height:1px;background:var(--muted);opacity:0.4}
+
+  /* ABOUT */
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .about-card{background:var(--card);border-radius:16px;border:1px solid var(--border);padding:28px}
+  .profile-row{display:flex;gap:20px;align-items:flex-start}
+  .avatar{width:72px;height:72px;border-radius:12px;background:#c8d4e8;overflow:hidden;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:28px;color:#8a9dc0;font-family:'Playfair Display',serif}
+  .profile-name{font-size:17px;font-weight:500;margin-bottom:4px}
+  .profile-desc{font-size:12px;color:var(--muted);line-height:1.7;margin-bottom:12px}
+  .profile-badge{font-size:11px;color:var(--muted);border:1px solid var(--border);padding:4px 12px;border-radius:20px;display:inline-block}
+  .info-row{display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:13px;color:var(--muted)}
+  .info-row span:first-child{width:16px;font-size:14px}
+  .edu-badge{display:inline-block;font-size:13px;font-weight:500;margin-bottom:10px;color:var(--text)}
+  .edu-sub{font-size:12px;color:var(--muted);display:block}
+  .skill-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+  .skill-tag{font-size:11px;background:var(--tag-bg);border:1px solid var(--border);padding:4px 10px;border-radius:12px;color:var(--text)}
+
+  /* EXP */
+  .exp-item{margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid var(--border)}
+  .exp-item:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+  .exp-header{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px}
+  .exp-company{font-size:14px;font-weight:500}
+  .exp-date{font-size:11px;color:var(--muted)}
+  .exp-role{font-size:12px;color:var(--accent);margin-bottom:6px}
+  .exp-project{font-size:13px;font-weight:500;margin:8px 0 4px}
+  .exp-desc{font-size:12px;color:var(--muted);line-height:1.7}
+
+  /* PROJECTS */
+  .projects-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .project-card{background:var(--card);border-radius:16px;border:1px solid var(--border);overflow:hidden;cursor:pointer;transition:transform 0.25s,box-shadow 0.25s;position:relative}
+  .project-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,0.08)}
+  .proj-img{height:200px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+  .proj-body{padding:24px}
+  .proj-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+  .proj-tag{font-size:10px;padding:3px 10px;border-radius:10px;background:var(--tag-bg);border:1px solid var(--border);color:var(--muted);letter-spacing:0.04em}
+  .proj-title{font-size:17px;font-weight:500;line-height:1.4;margin-bottom:8px}
+  .proj-desc{font-size:12px;color:var(--muted);line-height:1.8}
+  .proj-metrics{display:flex;gap:16px;margin-top:16px}
+  .metric{text-align:center}
+  .metric-num{font-size:20px;font-weight:500;color:var(--accent)}
+  .metric-label{font-size:10px;color:var(--muted);margin-top:2px}
+  .proj-arrow{position:absolute;top:20px;right:20px;width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,0.9);display:flex;align-items:center;justify-content:center;font-size:14px;opacity:0;transition:opacity 0.2s}
+  .project-card:hover .proj-arrow{opacity:1}
+
+  /* OVERLAY */
+  .overlay{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,0.6);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.3s;padding:24px}
+  .overlay.open{opacity:1;pointer-events:all}
+  .modal{background:var(--white);border-radius:20px;max-width:680px;width:100%;max-height:85vh;overflow-y:auto;padding:40px;position:relative;transform:translateY(20px);transition:transform 0.3s}
+  .overlay.open .modal{transform:translateY(0)}
+  .modal-close{position:absolute;top:20px;right:20px;width:32px;height:32px;border-radius:50%;background:var(--tag-bg);border:none;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;color:var(--muted)}
+  .modal-tag{font-size:11px;color:var(--accent);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:12px}
+  .modal-title{font-family:'Playfair Display',serif;font-size:28px;font-weight:400;line-height:1.3;margin-bottom:16px}
+  .modal-img{height:260px;border-radius:12px;margin-bottom:24px;display:flex;align-items:center;justify-content:center;font-size:64px;overflow:hidden}
+  .modal-section{margin-top:20px}
+  .modal-section-title{font-size:13px;font-weight:500;letter-spacing:0.05em;margin-bottom:8px;color:var(--text)}
+  .modal-text{font-size:13px;color:var(--muted);line-height:1.9}
+  .modal-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px}
+  .modal-metric{background:var(--tag-bg);border-radius:10px;padding:16px;text-align:center}
+  .modal-metric-num{font-size:22px;font-weight:500;color:var(--accent)}
+  .modal-metric-label{font-size:11px;color:var(--muted);margin-top:4px}
+
+  /* CONTACT */
+  .contact-card{background:var(--card);border-radius:16px;border:1px solid var(--border);padding:48px;display:flex;gap:60px;align-items:center}
+  .contact-title{font-family:'Playfair Display',serif;font-size:36px;font-weight:400;line-height:1.3;margin-bottom:16px}
+  .contact-sub{font-size:13px;color:var(--muted);line-height:1.8;margin-bottom:28px}
+  .contact-btn{display:inline-block;background:var(--accent);color:#fff;padding:12px 28px;border-radius:24px;font-size:13px;font-weight:500;text-decoration:none;letter-spacing:0.04em;cursor:pointer;border:none}
+  .contact-links{display:flex;flex-direction:column;gap:12px;min-width:200px}
+  .contact-link-row{display:flex;align-items:center;gap:12px;color:var(--muted);font-size:13px}
+  .contact-link-icon{width:32px;height:32px;border-radius:8px;background:var(--tag-bg);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+
+  /* FOOTER */
+  footer{text-align:center;padding:40px;font-size:12px;color:var(--muted);letter-spacing:0.06em;border-top:1px solid var(--border);margin-top:0}
+
+  /* FADE IN */
+  .fade-in{opacity:0;transform:translateY(24px);transition:opacity 0.6s ease,transform 0.6s ease}
+  .fade-in.visible{opacity:1;transform:translateY(0)}
+
+  /* SCROLLBAR */
+  ::-webkit-scrollbar{width:4px}
+  ::-webkit-scrollbar-track{background:transparent}
+  ::-webkit-scrollbar-thumb{background:rgba(0,0,0,0.15);border-radius:4px}
+
+  @media(max-width:700px){
+    nav{padding:0 20px}
+    section{padding:60px 20px}
+    .about-grid,.projects-grid{grid-template-columns:1fr}
+    .contact-card{flex-direction:column;padding:28px;gap:28px}
+    .hero-dot{width:36px;height:36px;top:100px;right:20px}
+    .modal-metrics{grid-template-columns:1fr 1fr}
+    .modal{padding:24px}
+    .hero-scroll{display:none}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-logo">陈梦阳</span>
+  <div class="nav-links">
+    <a onclick="scrollToSection('about')" id="n-about">关于</a>
+    <a onclick="scrollToSection('projects')" id="n-projects">项目</a>
+    <a onclick="scrollToSection('contact')" id="n-contact">联系</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-dot"></div>
+  <span class="hero-year fade-in">2026</span>
+  <div class="hero-sub fade-in" style="transition-delay:0.1s">Design Portfolio</div>
+  <span class="hero-tag fade-in" style="transition-delay:0.2s">产品体验设计师 · 字节跳动</span>
+  <div class="hero-scroll fade-in" style="transition-delay:0.35s" onclick="scrollToSection('about')">
+    <span class="scroll-line"></span>
+    <span>向下探索</span>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label fade-in">02 &nbsp;个人信息</div>
+  <div class="about-grid">
+
+    <div class="about-card fade-in" style="transition-delay:0.05s">
+      <div class="profile-row">
+        <div class="avatar">陈</div>
+        <div>
+          <div class="profile-name">陈梦阳</div>
+          <div class="profile-desc">擅长用设计解决复杂业务问题，创造更高效、更有温度的产品体验。</div>
+          <span class="profile-badge">交互体验设计师 · 2 年设计经验</span>
+        </div>
+      </div>
+      <div style="margin-top:20px;border-top:1px solid var(--border);padding-top:20px">
+        <div class="edu-badge">同济大学</div>
+        <span class="edu-sub">本科 动画 &nbsp;|&nbsp; 硕士 交互设计</span>
+        <div style="margin-top:16px">
+          <div class="info-row"><span>✉</span><span>chenmya@qq.com</span></div>
+          <div class="info-row"><span>📱</span><span>156 180 30630</span></div>
+          <div class="info-row"><span>🌐</span><span>chenmya</span></div>
+          <div class="info-row"><span>👤</span><span>陈梦阳</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="about-card fade-in" style="transition-delay:0.1s">
+      <div style="font-size:12px;color:var(--muted);letter-spacing:0.06em;margin-bottom:16px;text-transform:uppercase">Work Experience</div>
+      <div class="exp-item">
+        <div class="exp-header">
+          <span class="exp-company">字节跳动科技有限公司</span>
+          <span class="exp-date">2024/05 – 至今</span>
+        </div>
+        <div class="exp-role">产品体验设计师</div>
+        <div class="exp-project">抖音来客</div>
+        <div class="exp-desc">主导商家容治理与体验业务核心设计，0→1 搭建商家体验中心，整合治理链路，带动消费者体验、经营效率双升，贡献 GMV 增量超亿元。</div>
+        <div class="exp-project">抖音</div>
+        <div class="exp-desc">负责抖音团购退款模块交互与界面设计，搭建差异化退款挽回、智能路径，退款拦截率提升 55%，有效降低商费退款率与用户负反馈。</div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-header">
+          <span class="exp-company">华勤技术股份有限公司</span>
+          <span class="exp-date">2022/11 – 2024/04</span>
+        </div>
+        <div class="exp-role">交互设计师（实习）</div>
+        <div class="exp-project">五菱汽车</div>
+        <div class="exp-desc">负责五菱汽车 HMI 系统三大功能模块交互与界面设计，和开发团队共创用户界面，最终在 2025 年五菱亮辰车型上市。</div>
+        <div class="exp-project">凯迪拉克</div>
+        <div class="exp-desc">负责凯迪拉克多媒体交互界面构思与设计，优化并完成整体界面规范。</div>
+      </div>
+    </div>
+
+    <div class="about-card fade-in" style="grid-column:span 2;transition-delay:0.15s">
+      <div style="font-size:12px;color:var(--muted);letter-spacing:0.06em;margin-bottom:14px;text-transform:uppercase">Skills</div>
+      <div style="display:flex;gap:32px;flex-wrap:wrap">
+        <div>
+          <div style="font-size:11px;color:var(--muted);margin-bottom:8px">UX 工具</div>
+          <div class="skill-row"><span class="skill-tag">Figma</span><span class="skill-tag">Sketch</span><span class="skill-tag">Mastergo</span><span class="skill-tag">ProtoPie</span></div>
+        </div>
+        <div>
+          <div style="font-size:11px;color:var(--muted);margin-bottom:8px">AI 工具</div>
+          <div class="skill-row"><span class="skill-tag">即梦</span><span class="skill-tag">Gemini</span><span class="skill-tag">Lovart</span></div>
+        </div>
+        <div>
+          <div style="font-size:11px;color:var(--muted);margin-bottom:8px">视觉创意</div>
+          <div class="skill-row"><span class="skill-tag">PS</span><span class="skill-tag">AE</span><span class="skill-tag">PR</span><span class="skill-tag">剪映</span><span class="skill-tag">3Dsmax</span></div>
+        </div>
+        <div>
+          <div style="font-size:11px;color:var(--muted);margin-bottom:8px">其他</div>
+          <div class="skill-row"><span class="skill-tag">数据分析</span><span class="skill-tag">跨团队协作</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label fade-in">03 &nbsp;项目目录</div>
+  <div class="projects-grid">
+
+    <div class="project-card fade-in" style="transition-delay:0.05s" onclick="openModal('p1')">
+      <div class="proj-arrow">→</div>
+      <div class="proj-img" style="background:linear-gradient(135deg,#e8edf9 0%,#c8d8f5 100%)">
+        <div style="display:flex;gap:16px;align-items:flex-end;padding:24px">
+          <div style="width:80px;height:120px;background:#fff;border-radius:10px;border:1px solid rgba(0,0,0,0.06);display:flex;flex-direction:column;padding:10px;gap:4px">
+            <div style="height:8px;background:#4B6FD4;border-radius:3px;width:60%"></div>
+            <div style="height:4px;background:#e0e0e0;border-radius:2px"></div>
+            <div style="height:4px;background:#e0e0e0;border-radius:2px;width:80%"></div>
+            <div style="flex:1"></div>
+            <div style="height:24px;background:#f5f7fa;border-radius:6px;display:flex;align-items:center;padding:0 8px;gap:4px"><div style="width:8px;height:8px;background:#4B6FD4;border-radius:50%"></div><div style="height:3px;background:#ccc;flex:1;border-radius:2px"></div></div>
+          </div>
+          <div style="width:80px;height:100px;background:#fff;border-radius:10px;border:1px solid rgba(0,0,0,0.06);display:flex;flex-direction:column;padding:10px;gap:6px">
+            <div style="height:6px;background:#4B6FD4;border-radius:3px"></div>
+            <div style="height:4px;background:#e0e0e0;border-radius:2px;width:70%"></div>
+            <div style="height:28px;background:#4B6FD4;border-radius:6px;margin-top:auto;opacity:0.8"></div>
+          </div>
+        </div>
+      </div>
+      <div class="proj-body">
+        <div class="proj-tags"><span class="proj-tag">治理业务</span><span class="proj-tag">抖音来客</span><span class="proj-tag">B端</span></div>
+        <div class="proj-title">降低商家理解成本的治理体验优化</div>
+        <div class="proj-desc">优化规则展示 · 简化操作链路 · 提高业务效率，0→1 搭建商家体验中心</div>
+        <div class="proj-metrics">
+          <div class="metric"><div class="metric-num">亿+</div><div class="metric-label">GMV 增量</div></div>
+          <div class="metric"><div class="metric-num">↑55%</div><div class="metric-label">拦截率</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card fade-in" style="transition-delay:0.1s" onclick="openModal('p2')">
+      <div class="proj-arrow">→</div>
+      <div class="proj-img" style="background:linear-gradient(135deg,#fff0f0 0%,#ffd6d6 100%)">
+        <div style="display:flex;align-items:center;padding:24px;gap:12px">
+          <div style="width:100px;background:#fff;border-radius:12px;padding:12px;border:1px solid rgba(0,0,0,0.06)">
+            <div style="font-size:10px;color:#999;margin-bottom:8px">信息透明</div>
+            <div style="height:6px;background:#ff6b6b;border-radius:3px;margin-bottom:4px"></div>
+            <div style="height:6px;background:#ffa8a8;border-radius:3px;width:70%;margin-bottom:10px"></div>
+            <div style="height:20px;background:#ff6b6b;border-radius:6px;opacity:0.9"></div>
+          </div>
+          <div style="width:100px;background:#fff;border-radius:12px;padding:12px;border:1px solid rgba(0,0,0,0.06)">
+            <div style="font-size:10px;color:#999;margin-bottom:8px">极速退款</div>
+            <div style="height:20px;background:#f0f0f0;border-radius:6px;margin-bottom:6px;display:flex;align-items:center;padding:0 8px"><div style="width:6px;height:6px;background:#ff6b6b;border-radius:50%"></div></div>
+            <div style="height:6px;background:#ffe0e0;border-radius:3px;margin-bottom:4px"></div>
+            <div style="height:6px;background:#ffe0e0;border-radius:3px;width:60%"></div>
+          </div>
+        </div>
+      </div>
+      <div class="proj-body">
+        <div class="proj-tags"><span class="proj-tag">消费者体验</span><span class="proj-tag">C端</span><span class="proj-tag">退款流程</span></div>
+        <div class="proj-title">消费者体验保障升级</div>
+        <div class="proj-desc">核心信息外显让风险被保障 · 信息透明让退约更可控 · 极速退款让售后更省心</div>
+        <div class="proj-metrics">
+          <div class="metric"><div class="metric-num">↓</div><div class="metric-label">退款率</div></div>
+          <div class="metric"><div class="metric-num">↑</div><div class="metric-label">用户满意度</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card fade-in" style="transition-delay:0.15s" onclick="openModal('p3')">
+      <div class="proj-arrow">→</div>
+      <div class="proj-img" style="background:linear-gradient(135deg,#e8f5e9 0%,#b8e0c0 100%)">
+        <div style="display:flex;gap:12px;padding:20px;align-items:center">
+          <div style="text-align:center">
+            <div style="width:64px;height:64px;border-radius:12px;background:#fff;border:1px solid rgba(0,0,0,0.06);display:flex;align-items:center;justify-content:center;font-size:28px;margin:0 auto 8px">🍜</div>
+            <div style="font-size:9px;color:#666">AI生图调研</div>
+          </div>
+          <div style="text-align:center">
+            <div style="width:64px;height:64px;border-radius:12px;background:#fff;border:1px solid rgba(0,0,0,0.06);display:flex;align-items:center;justify-content:center;font-size:28px;margin:0 auto 8px">🌿</div>
+            <div style="font-size:9px;color:#666">与设计实践</div>
+          </div>
+          <div style="text-align:center">
+            <div style="width:64px;height:64px;border-radius:12px;background:#2d7a4a;border:1px solid rgba(0,0,0,0.06);display:flex;align-items:center;justify-content:center;font-size:28px;margin:0 auto 8px">🍉</div>
+            <div style="font-size:9px;color:#666">农博会IP</div>
+          </div>
+        </div>
+      </div>
+      <div class="proj-body">
+        <div class="proj-tags"><span class="proj-tag">AI设计</span><span class="proj-tag">个人成长</span></div>
+        <div class="proj-title">AI 生图调研与设计实践</div>
+        <div class="proj-desc">探索 AI 生图工具在实际设计场景中的应用，结合农博会彭集特色果蔬 IP 设计进行创意实践</div>
+      </div>
+    </div>
+
+    <div class="project-card fade-in" style="transition-delay:0.2s" onclick="openModal('p4')">
+      <div class="proj-arrow">→</div>
+      <div class="proj-img" style="background:linear-gradient(135deg,#e8eaf6 0%,#c5cae9 100%)">
+        <div style="display:flex;padding:20px;gap:8px;align-items:center">
+          <div style="flex:1;background:#fff;border-radius:10px;padding:14px;border:1px solid rgba(0,0,0,0.06)">
+            <div style="height:6px;background:#5c6bc0;border-radius:3px;width:50%;margin-bottom:8px"></div>
+            <div style="display:flex;gap:4px;height:60px">
+              <div style="flex:0 0 32px;background:#e8eaf6;border-radius:4px;display:flex;flex-direction:column;justify-content:flex-end;padding:4px"><div style="height:50%;background:#5c6bc0;border-radius:2px;opacity:0.7"></div></div>
+              <div style="flex:0 0 32px;background:#e8eaf6;border-radius:4px;display:flex;flex-direction:column;justify-content:flex-end;padding:4px"><div style="height:80%;background:#5c6bc0;border-radius:2px"></div></div>
+              <div style="flex:0 0 32px;background:#e8eaf6;border-radius:4px;display:flex;flex-direction:column;justify-content:flex-end;padding:4px"><div style="height:35%;background:#5c6bc0;border-radius:2px;opacity:0.6"></div></div>
+            </div>
+          </div>
+          <div style="flex:1;background:#fff;border-radius:10px;padding:14px;border:1px solid rgba(0,0,0,0.06)">
+            <div style="height:40px;background:#e8eaf6;border-radius:8px;margin-bottom:8px;display:flex;align-items:center;justify-content:center"><div style="width:24px;height:24px;background:#5c6bc0;border-radius:50%"></div></div>
+            <div style="height:4px;background:#e0e0e0;border-radius:2px;margin-bottom:4px"></div>
+            <div style="height:4px;background:#e0e0e0;border-radius:2px;width:70%"></div>
+          </div>
+        </div>
+      </div>
+      <div class="proj-body">
+        <div class="proj-tags"><span class="proj-tag">HMI</span><span class="proj-tag">车载交互</span><span class="proj-tag">五菱汽车</span></div>
+        <div class="proj-title">车载交互系统设计</div>
+        <div class="proj-desc">五菱汽车 HMI 系统三大功能模块交互与界面设计，已于 2025 年亮辰车型量产上市</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" style="padding-bottom:60px">
+  <div class="section-label fade-in">04 &nbsp;联系我</div>
+  <div class="contact-card fade-in">
+    <div style="flex:1">
+      <div class="contact-title">有好的机会？<br>欢迎联系！</div>
+      <div class="contact-sub">目前就职于字节跳动，对优秀的设计机会保持开放。<br>如有合作或咨询需求，随时欢迎联系。</div>
+      <a class="contact-btn" href="mailto:chenmya@qq.com">发送邮件 →</a>
+    </div>
+    <div class="contact-links">
+      <div class="contact-link-row"><div class="contact-link-icon">✉</div><span>chenmya@qq.com</span></div>
+      <div class="contact-link-row"><div class="contact-link-icon">📱</div><span>156 180 30630</span></div>
+      <div class="contact-link-row"><div class="contact-link-icon">💬</div><span>chenmya（微信）</span></div>
+      <div class="contact-link-row"><div class="contact-link-icon">🎨</div><span>陈梦阳（站酷）</span></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 陈梦阳 · Design Portfolio &nbsp;·&nbsp; 产品体验设计师
+</footer>
+
+<!-- MODAL -->
+<div class="overlay" id="overlay" onclick="closeModal(event)">
+  <div class="modal" id="modal">
+    <button class="modal-close" onclick="closeOverlay()">✕</button>
+    <div id="modal-content"></div>
+  </div>
+</div>
+
+<script>
+const projects = {
+  p1: {
+    tag: '治理业务设计 · 抖音来客',
+    title: '降低商家理解成本的治理体验优化',
+    bg: 'linear-gradient(135deg,#e8edf9 0%,#c8d8f5 100%)',
+    emoji: '📊',
+    metrics: [{n:'亿+',l:'GMV 增量'},{n:'55%',l:'拦截率提升'},{n:'0→1',l:'体验中心'}],
+    challenge: '商家面对复杂治理规则时理解成本极高，操作链路繁琐，导致业务效率低下和大量投诉。',
+    solution: '通过重新梳理信息架构，将治理规则可视化展示，简化核心操作路径，建立商家体验中心，0→1 整合分散的治理链路。',
+    result: '带动消费者体验和经营效率双升，GMV 增量超亿元，退款拦截率提升 55%，有效降低商费退款率和用户负反馈。'
+  },
+  p2: {
+    tag: '消费者体验 · C端',
+    title: '消费者体验保障升级',
+    bg: 'linear-gradient(135deg,#fff0f0 0%,#ffd6d6 100%)',
+    emoji: '🛡️',
+    metrics: [{n:'↑',l:'满意度'},{n:'↓',l:'退款纠纷'},{n:'透明',l:'信息可控'}],
+    challenge: '消费者在退款过程中信息不透明，退款链路繁琐，导致体验差、投诉多。',
+    solution: '核心信息外显让风险被保障，信息透明让退约决策更可控，极速退款减少等待焦虑，让售后体验显著提升。',
+    result: '用户满意度显著提升，退款相关投诉率下降，"极速退款"功能上线后成为核心体验亮点。'
+  },
+  p3: {
+    tag: 'AI 设计 · 个人成长',
+    title: 'AI 生图调研与设计实践',
+    bg: 'linear-gradient(135deg,#e8f5e9 0%,#b8e0c0 100%)',
+    emoji: '🤖',
+    metrics: [{n:'AI',l:'生图工具'},{n:'IP',l:'品牌设计'},{n:'创意',l:'设计实践'}],
+    challenge: 'AI 生图工具快速迭代，如何在实际设计场景中高效运用，并保持设计风格的一致性和品牌调性？',
+    solution: '系统性调研主流 AI 生图工具（即梦、Gemini、Lovart），结合农博会彭集特色果蔬 IP 设计项目进行创意实践，探索 AI 辅助设计的工作流。',
+    result: '形成一套 AI 辅助设计的标准流程，成功交付农博会彭集特色果蔬 IP 视觉方案，并在团队内部分享 AI 设计实践经验。'
+  },
+  p4: {
+    tag: 'HMI · 车载交互 · 五菱汽车',
+    title: '车载交互系统设计',
+    bg: 'linear-gradient(135deg,#e8eaf6 0%,#c5cae9 100%)',
+    emoji: '🚗',
+    metrics: [{n:'3',l:'核心模块'},{n:'量产',l:'2025 亮辰'},{n:'HMI',l:'系统规范'}],
+    challenge: '车载 HMI 系统需要在驾驶安全的前提下，兼顾信息密度、操作便捷性和视觉美观，同时需要与工程团队高度协同。',
+    solution: '负责五菱汽车 HMI 系统三大功能模块的交互逻辑与界面设计，建立完整的界面规范体系，与开发团队共创最优用户界面方案。',
+    result: '设计方案顺利通过量产评审，并于 2025 年在五菱亮辰车型上市，同时负责凯迪拉克多媒体交互界面优化。'
+  }
+};
+
+function openModal(id) {
+  const p = projects[id];
+  document.getElementById('modal-content').innerHTML = `
+    <div class="modal-tag">${p.tag}</div>
+    <div class="modal-title">${p.title}</div>
+    <div class="modal-img" style="background:${p.bg}"><span style="font-size:64px">${p.emoji}</span></div>
+    <div class="modal-metrics">${p.metrics.map(m=>`<div class="modal-metric"><div class="modal-metric-num">${m.n}</div><div class="modal-metric-label">${m.l}</div></div>`).join('')}</div>
+    <div class="modal-section"><div class="modal-section-title">设计挑战</div><div class="modal-text">${p.challenge}</div></div>
+    <div class="modal-section"><div class="modal-section-title">设计方案</div><div class="modal-text">${p.solution}</div></div>
+    <div class="modal-section"><div class="modal-section-title">项目成果</div><div class="modal-text">${p.result}</div></div>
+  `;
+  document.getElementById('overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeOverlay() {
+  document.getElementById('overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function closeModal(e) {
+  if (e.target === document.getElementById('overlay')) closeOverlay();
+}
+
+function scrollToSection(id) {
+  document.getElementById(id).scrollIntoView({behavior:'smooth'});
+}
+
+// Fade in on scroll
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, {threshold: 0.1});
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+// Nav active state
+window.addEventListener('scroll', () => {
+  const s = window.scrollY;
+  const ids = ['about','projects','contact'];
+  const ns = ['n-about','n-projects','n-contact'];
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  ids.forEach((id, i) => {
+    const el = document.getElementById(id);
+    if (el && el.offsetTop - 100 <= s) document.getElementById(ns[i]).classList.add('active');
+  });
+});
+
+// ESC to close modal
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeOverlay(); });
+</script>
+</body>
+</html>
