@@ -22,7 +22,8 @@
   body{font-family:'Noto Sans SC',sans-serif;background:var(--bg);color:var(--text);font-size:14px;overflow-x:hidden}
 
   /* NAV */
-  nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 48px 0 12px;height:56px;background:rgba(240,242,247,0.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid rgba(0,0,0,0.06);box-shadow:0 2px 16px rgba(0,0,0,0.06)}
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;height:56px;display:flex;align-items:center;justify-content:center;background:rgba(240,242,247,0.6);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid rgba(0,0,0,0.06);box-shadow:0 2px 16px rgba(0,0,0,0.06)}
+  .nav-inner{max-width:calc(1100px + 96px);width:100%;margin:0 auto;padding:0 48px;display:flex;align-items:center;justify-content:space-between}
   .nav-profile{display:flex;align-items:center;gap:12px}
   .nav-avatar{width:38px;height:38px;border-radius:50%;object-fit:cover;object-position:center top;flex-shrink:0}
   .nav-profile-text{display:flex;flex-direction:column;gap:1px}
@@ -287,6 +288,7 @@
 
   @media(max-width:700px){
     nav{padding:0 20px;height:56px}
+    .nav-inner{padding:0 !important}
     section{padding:60px 20px}
     /* Hero mobile */
     .hero-headline{font-size:clamp(22px,7vw,36px) !important;font-weight:400 !important}
@@ -343,6 +345,7 @@
 
 <!-- NAV -->
 <nav>
+  <div class="nav-inner">
   <div class="nav-profile">
     <img class="nav-avatar" src="https://cdn.jsdelivr.net/gh/xenodovidio/my-portfolio@main/mengyang_avater.png" alt="陈梦阳">
     <div class="nav-profile-text">
@@ -352,10 +355,18 @@
   </div>
   <div class="nav-right">
     <div class="nav-links">
-      <a onclick="scrollToSection('about')" id="n-about">关于</a>
-      <a onclick="scrollToSection('projects')" id="n-projects">项目</a>
-      <a onclick="scrollToSection('contact')" id="n-contact">联系</a>
+      <a onclick="scrollToSection('contact')" id="n-contact" style="display:inline-flex;align-items:center;gap:6px;background:#f0f0f0;border-radius:40px;padding:6px 16px">
+        欢迎联系我
+        <svg width="27" height="27" viewBox="0 0 27 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M14.6122 13.7205C15.237 13.7207 15.7455 14.2284 15.7457 14.854C15.7457 15.4826 15.2373 15.9874 14.6122 15.9876C13.9844 15.9876 13.4787 15.4828 13.4787 14.854C13.479 14.2299 13.9836 13.7205 14.6122 13.7205Z" fill="black" fill-opacity="0.6"/>
+<path d="M19.9048 13.7205C20.5319 13.7205 21.037 14.2291 21.0373 14.854C21.0373 15.482 20.5314 15.9876 19.9048 15.9876C19.2793 15.9876 18.7702 15.4836 18.7702 14.854C18.7705 14.2291 19.2785 13.7205 19.9048 13.7205Z" fill="black" fill-opacity="0.6"/>
+<path d="M6.91833 7.0206C7.61748 7.0206 8.18494 7.5879 8.18502 8.28835C8.18502 8.98726 7.61777 9.55717 6.91833 9.55717C6.2149 9.55696 5.64844 8.98774 5.64844 8.28835C5.64852 7.58731 6.216 7.02081 6.91833 7.0206Z" fill="black" fill-opacity="0.6"/>
+<path d="M13.0302 7.0206C13.7305 7.02063 14.3 7.58707 14.3001 8.28835C14.3001 8.98809 13.7308 9.55714 13.0302 9.55717C12.3296 9.55717 11.7624 8.9875 11.7624 8.28835C11.7625 7.58766 12.3299 7.0206 13.0302 7.0206Z" fill="black" fill-opacity="0.6"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M9.98118 2.72727C13.925 2.72738 17.3873 5.0174 18.5028 8.34162C18.6924 8.90642 18.7489 9.47565 18.7649 9.98331C22.0063 10.4617 24.6829 12.885 24.6829 16.0813C24.6829 17.6091 24.0502 18.9847 23.0455 20.0391C23.0554 20.1411 23.0796 20.279 23.1254 20.5099C23.1687 20.7284 23.2496 21.118 23.2223 21.4943C23.1901 21.9387 22.9897 22.5268 22.354 22.8516L22.3434 22.8569C21.9411 23.057 21.5541 22.9735 21.4261 22.9432C21.2476 22.9009 21.0815 22.8322 20.9542 22.7738C20.6963 22.6555 20.409 22.4901 20.1765 22.3551C19.9356 22.2153 19.7414 22.1029 19.5842 22.0227C18.9507 22.1833 18.2829 22.272 17.5909 22.272C14.6811 22.272 12.0082 20.692 10.9645 18.3047C10.6865 18.3817 10.3593 18.4368 9.97905 18.4368C8.95615 18.4367 8.15267 18.3128 7.3402 18.0852C7.32158 18.094 7.29938 18.1024 7.27628 18.114C7.05571 18.2247 6.78361 18.389 6.45703 18.5849C6.15645 18.7652 5.79905 18.9788 5.48331 19.1293C5.32714 19.2037 5.13244 19.287 4.92827 19.337C4.77546 19.3744 4.36237 19.4605 3.9407 19.2443L3.93218 19.2411C3.53701 19.035 3.41282 18.6806 3.37713 18.5497C3.33644 18.4003 3.33576 18.2749 3.33665 18.2216C3.33858 18.1059 3.35682 18.004 3.36541 17.9584C3.38523 17.8535 3.41733 17.725 3.44212 17.6261C3.49913 17.3985 3.56365 17.1416 3.60725 16.8718C3.65185 16.5956 3.66412 16.3663 3.64347 16.1996C3.63367 16.1206 3.6192 16.0808 3.61257 16.0653C2.07476 14.6714 1.09091 12.7414 1.09091 10.5799C1.09107 6.10358 5.22387 2.72652 9.98118 2.72727ZM17.5909 12.0778C14.7079 12.0778 12.6829 14.0312 12.6829 16.0813C12.6829 18.1368 14.7086 20.0901 17.5909 20.0902C18.1843 20.0902 18.7484 20.0038 19.272 19.8484L19.4126 19.8153C19.7323 19.7606 20.002 19.8446 20.0923 19.8729C20.2494 19.9221 20.4002 19.9905 20.5217 20.0508C20.6333 20.1062 20.7527 20.1717 20.8711 20.2383C20.8639 20.163 20.8587 20.0868 20.8572 20.0114C20.8503 19.6505 20.9136 19.084 21.3718 18.6328C22.0962 17.9194 22.5011 17.0268 22.5011 16.0813C22.501 14.0317 20.477 12.0778 17.5909 12.0778ZM9.98118 4.90909C6.12684 4.90848 3.2729 7.59012 3.27273 10.5799C3.27273 12.0579 3.94387 13.4294 5.0934 14.4641C5.5776 14.9001 5.75137 15.4727 5.80824 15.9311C5.82857 16.0951 5.83223 16.2591 5.83061 16.419C5.98896 16.3274 6.14882 16.2384 6.2983 16.1634C6.45377 16.0853 6.63812 16.0024 6.82671 15.945C6.97053 15.9011 7.32357 15.8029 7.71201 15.9215C8.42161 16.1389 9.07221 16.2549 9.97905 16.255C10.2163 16.255 10.3847 16.2095 10.5032 16.1634C10.5028 16.1361 10.5011 16.1087 10.5011 16.0813C10.5011 12.8309 13.2687 10.3796 16.581 9.95987C16.5648 9.60449 16.5236 9.30338 16.434 9.03622C15.6605 6.73154 13.1332 4.9092 9.98118 4.90909Z" fill="black" fill-opacity="0.6"/>
+</svg>
+      </a>
     </div>
+  </div>
   </div>
 </nav>
 
@@ -365,7 +376,7 @@
 
   <!-- ⌘ + Z keys top-left -->
   <div class="hero-deco hero-deco-cmd" style="top:18%;left:8%;background:transparent;border:none;box-shadow:none;width:130px">
-    <img src="https://cdn.jsdelivr.net/gh/xenodovidio/my-portfolio@main/covertool_02.png" style="width:100%;height:auto;object-fit:contain">
+    <img src="https://cdn.jsdelivr.net/gh/xenodovidio/my-portfolio@main/newfigma.png" style="width:100%;height:auto;object-fit:contain">
   </div>
 
   <!-- Design tools panel right-center -->
@@ -389,7 +400,7 @@
 
   <!-- Avatar sticker -->
   <div class="hero-deco" style="top:55%;left:8%;background:transparent;border:none;box-shadow:none;width:220px">
-    <img src="https://cdn.jsdelivr.net/gh/xenodovidio/my-portfolio@main/caton_avater_test.png" style="width:100%;height:auto;object-fit:contain">
+    <img src="https://cdn.jsdelivr.net/gh/xenodovidio/my-portfolio@main/caton_avater_test2.svg" style="width:100%;height:auto;object-fit:contain">
   </div>
 
   <!-- Center content -->
@@ -399,9 +410,9 @@
       <span class="hero-pill-star">✦</span>
     </div>
     <div class="hero-headline">
-      All about people,<br>growth, fun and<br>
+      Turning ideas into<br>impactful<br>
       <span style="position:relative;display:inline-block;margin-top:8px">
-        <span class="hero-headline-italic">beauty.</span>
+        <span class="hero-headline-italic">design</span>
         <!-- cursor -->
         <span class="hero-cursor">
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
@@ -414,9 +425,7 @@
   </div>
 
   <div class="hero-scroll" onclick="scrollToSection('about')">
-    <span class="scroll-line"></span>
-    <span>向下探索</span>
-    <span class="scroll-line"></span>
+    <span>下滑了解更多</span>
   </div>
 
 </section>
@@ -548,21 +557,20 @@
   <div class="section-label fade-in">03 &nbsp;项目目录</div>
   <div class="projects-list">
 
+    <!-- P1 上方插图 -->
+    <div class="fade-in" style="text-align:center;padding:32px 0 16px">
+      <img src="https://cdn.jsdelivr.net/gh/xenodovidio/my-portfolio@main/yewu01.png" style="width:60%;height:auto;display:inline-block">
+    </div>
+
     <!-- P1: 图左文右 -->
     <div class="project-row fade-in" style="transition-delay:0.05s" onclick="openModal('p1')">
       <div class="proj-img-wrap">
         <div class="proj-img-inner" style="background:#f0f0f0;padding:0;overflow:hidden"><img src="https://cdn.jsdelivr.net/gh/xenodovidio/my-portfolio@main/portfolio_cover01.png" style="width:100%;height:100%;object-fit:cover;display:block"></div>
       </div>
       <div class="proj-text">
-        <div class="proj-num">01 &nbsp;·&nbsp; 治理业务设计</div>
-        <div class="proj-tags"><span class="proj-tag">抖音来客</span><span class="proj-tag">B端</span><span class="proj-tag">商家体验</span></div>
         <div class="proj-title">降低商家理解成本的<br>治理体验优化</div>
-        <div class="proj-desc">优化规则展示，简化操作链路，提高业务效率。0→1 搭建商家体验中心，整合治理链路。</div>
-        <div class="proj-metrics">
-          <div class="metric"><div class="metric-num">亿+</div><div class="metric-label">GMV 增量</div></div>
-          <div class="metric"><div class="metric-num">↑55%</div><div class="metric-label">退款拦截率</div></div>
-          <div class="metric"><div class="metric-num">0→1</div><div class="metric-label">体验中心</div></div>
-        </div>
+        <div class="proj-desc">重新定义设计语言<br>优化整体交互链路<br>协同产研共建流程化体系为业务产出提效</div>
+        <div class="proj-tags" style="margin-top:20px"><span class="proj-tag">抖音来客</span><span class="proj-tag">B端</span></div>
         <span class="proj-cta">查看案例 →</span>
       </div>
     </div>
@@ -573,16 +581,16 @@
         <div class="proj-img-inner" style="background:#f0f0f0;padding:0;overflow:hidden"><img src="https://cdn.jsdelivr.net/gh/xenodovidio/my-portfolio@main/portfolio_cover02.png" style="width:100%;height:100%;object-fit:cover;display:block"></div>
       </div>
       <div class="proj-text">
-        <div class="proj-num">02 &nbsp;·&nbsp; 消费者体验</div>
-        <div class="proj-tags"><span class="proj-tag">C端</span><span class="proj-tag">退款流程</span><span class="proj-tag">抖音</span></div>
         <div class="proj-title">消费者体验<br>保障升级</div>
-        <div class="proj-desc">核心信息外显让风险被保障，信息透明让退约更可控，极速退款让售后更省心。</div>
-        <div class="proj-metrics">
-          <div class="metric"><div class="metric-num">↓</div><div class="metric-label">退款纠纷率</div></div>
-          <div class="metric"><div class="metric-num">↑</div><div class="metric-label">用户满意度</div></div>
-        </div>
+        <div class="proj-desc">保障功能不仅仅是为交易售后兜底，而是在通过设计降低用户交易过程中的不确定性，建立信任闭环</div>
+        <div class="proj-tags" style="margin-top:20px"><span class="proj-tag">抖音</span><span class="proj-tag">C端</span></div>
         <span class="proj-cta">查看案例 →</span>
       </div>
+    </div>
+
+    <!-- P3 上方插图 -->
+    <div class="fade-in" style="text-align:center;padding:32px 0 16px">
+      <img src="https://cdn.jsdelivr.net/gh/xenodovidio/my-portfolio@main/qitasheji.png" style="width:60%;height:auto;display:inline-block">
     </div>
 
     <!-- P3: 图左文右 -->
@@ -591,14 +599,9 @@
         <div class="proj-img-inner" style="background:#f0f0f0;padding:0;overflow:hidden"><img src="https://cdn.jsdelivr.net/gh/xenodovidio/my-portfolio@main/portfolio_cover03.png" style="width:100%;height:100%;object-fit:cover;display:block"></div>
       </div>
       <div class="proj-text">
-        <div class="proj-num">03 &nbsp;·&nbsp; AI 设计 · 个人成长</div>
-        <div class="proj-tags"><span class="proj-tag">AI 设计</span><span class="proj-tag">即梦</span><span class="proj-tag">Gemini</span><span class="proj-tag">Lovart</span></div>
-        <div class="proj-title">AI 生图工具<br>调研与实践</div>
-        <div class="proj-desc">系统调研即梦、Gemini、Lovart 等主流工具，探索 AI 辅助设计工作流，并在团队内部分享实践经验。</div>
-        <div class="proj-metrics">
-          <div class="metric"><div class="metric-num">3+</div><div class="metric-label">工具横评</div></div>
-          <div class="metric"><div class="metric-num">标准</div><div class="metric-label">工作流沉淀</div></div>
-        </div>
+        <div class="proj-title">AI生图工具<br>调研与实践</div>
+        <div class="proj-desc">重新定义设计语言<br>优化整体交互链路<br>协同产研共建流程化体系为业务产出提效</div>
+        <div class="proj-tags" style="margin-top:20px"><span class="proj-tag">独立端</span><span class="proj-tag">VibeCoding</span></div>
         <span class="proj-cta">查看案例 →</span>
       </div>
     </div>
@@ -609,14 +612,9 @@
         <div class="proj-img-inner" style="background:#f0f0f0;padding:0;overflow:hidden"><img src="https://cdn.jsdelivr.net/gh/xenodovidio/my-portfolio@main/portfolio_cover04.png" style="width:100%;height:100%;object-fit:cover;display:block"></div>
       </div>
       <div class="proj-text">
-        <div class="proj-num">04 &nbsp;·&nbsp; IP 设计 · 品牌视觉</div>
-        <div class="proj-tags"><span class="proj-tag">IP 设计</span><span class="proj-tag">农博会</span><span class="proj-tag">品牌视觉</span></div>
-        <div class="proj-title">农博会彭集<br>特色果蔬 IP</div>
-        <div class="proj-desc">为农博会彭集特色果蔬设计品牌 IP 形象，结合 AI 生图工具进行创意探索，完成从概念到落地的完整视觉方案交付。</div>
-        <div class="proj-metrics">
-          <div class="metric"><div class="metric-num">0→1</div><div class="metric-label">IP 创建</div></div>
-          <div class="metric"><div class="metric-num">落地</div><div class="metric-label">视觉方案</div></div>
-        </div>
+        <div class="proj-title">农博会特色果蔬<br>ip设计</div>
+        <div class="proj-desc">与彭集街道合作，针对当地特色果蔬进行拟人化ip角色设计、三维模型设计、表情包及绘本故事设计</div>
+        <div class="proj-tags" style="margin-top:20px"><span class="proj-tag">品牌设计</span><span class="proj-tag">周边设计</span></div>
         <span class="proj-cta">查看案例 →</span>
       </div>
     </div>
@@ -627,14 +625,9 @@
         <div class="proj-img-inner" style="background:#f0f0f0;padding:0;overflow:hidden"><img src="https://cdn.jsdelivr.net/gh/xenodovidio/my-portfolio@main/portfolio_cover05.png" style="width:100%;height:100%;object-fit:cover;display:block"></div>
       </div>
       <div class="proj-text">
-        <div class="proj-num">05 &nbsp;·&nbsp; 车载交互系统</div>
-        <div class="proj-tags"><span class="proj-tag">HMI</span><span class="proj-tag">五菱汽车</span><span class="proj-tag">量产</span></div>
-        <div class="proj-title">车载交互<br>系统设计</div>
-        <div class="proj-desc">负责五菱汽车 HMI 系统三大功能模块交互与界面设计，与开发团队共创，已于 2025 年亮辰车型量产上市。</div>
-        <div class="proj-metrics">
-          <div class="metric"><div class="metric-num">3</div><div class="metric-label">核心模块</div></div>
-          <div class="metric"><div class="metric-num">量产</div><div class="metric-label">2025 亮辰</div></div>
-        </div>
+        <div class="proj-title">HMI车载交互<br>系统设计</div>
+        <div class="proj-desc">基于8155型号的芯片进行仪表、HUD、中控屏、娱乐屏的全方案设计。定义全新的交互框架以及3D动效，重点在于突出智能系统的差异化，打造3D与2D融合的流畅体验</div>
+        <div class="proj-tags" style="margin-top:20px"><span class="proj-tag">车载端</span><span class="proj-tag">HMI</span></div>
         <span class="proj-cta">查看案例 →</span>
       </div>
     </div>
@@ -644,16 +637,40 @@
 
 <!-- CONTACT -->
 <section id="contact" style="padding-bottom:60px">
-  <div class="section-label fade-in">04 &nbsp;联系我</div>
-  <div class="contact-card fade-in">
-    <div style="flex:1">
-      <div class="contact-title">有好的机会？<br>欢迎联系！</div>
-      <div class="contact-sub">目前就职于字节跳动，对优秀的设计机会保持开放。<br>如有合作或咨询需求，随时欢迎联系。</div>
-      <a class="contact-btn" href="#">联系我 →</a>
+  <div class="contact-card fade-in" style="display:grid;grid-template-columns:1fr auto 1fr;gap:0;align-items:center;padding:80px 60px">
+
+    <!-- 左：文字 -->
+    <div>
+      <div style="font-size:clamp(32px,4vw,52px);font-weight:400;line-height:1.2;margin-bottom:16px;font-family:'Noto Sans SC',sans-serif">Thanks for reading</div>
+      <div style="font-size:18px;color:#666;margin-bottom:8px">感谢阅读</div>
+      <div style="font-size:16px;color:#999">有好的机会？欢迎联系我 ～</div>
     </div>
-    <div class="contact-links">
-      <div class="contact-link-row"><div class="contact-link-icon">🎨</div><span>陈梦阳（站酷）</span></div>
+
+    <!-- 中：分割线 -->
+    <div style="width:1px;background:#e0e0e0;height:140px;margin:0 60px"></div>
+
+    <!-- 右：联系方式 -->
+    <div style="display:flex;flex-direction:column;gap:20px">
+      <div class="contact-link-row">
+        <div class="contact-link-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8.5 12c-.828 0-1.5.672-1.5 1.5S7.672 15 8.5 15s1.5-.672 1.5-1.5S9.328 12 8.5 12zm7 0c-.828 0-1.5.672-1.5 1.5s.672 1.5 1.5 1.5 1.5-.672 1.5-1.5S16.328 12 15.5 12zm-3.5-9c-5.523 0-10 3.582-10 8c0 2.502 1.436 4.717 3.656 6.134l-.656 2.366 2.5-.933c1.371.424 2.871.656 4.5.656 5.523 0 10-3.582 10-8s-4.477-8-10-8z"/></svg>
+        </div>
+        <span>chenmya</span>
+      </div>
+      <div class="contact-link-row">
+        <div class="contact-link-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+        </div>
+        <span>156 180 30 630</span>
+      </div>
+      <div class="contact-link-row">
+        <div class="contact-link-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+        </div>
+        <span>chenmya@qq.com</span>
+      </div>
     </div>
+
   </div>
 </section>
 
