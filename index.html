@@ -247,7 +247,7 @@
   /* ── DETAIL PAGE ── */
   .detail-page{position:fixed;inset:0;background:var(--bg);z-index:200;overflow-y:auto;transform:translateX(100%);transition:transform 0.4s cubic-bezier(0.4,0,0.2,1);display:flex;flex-direction:column}
   .detail-page.open{transform:translateX(0)}
-  .detail-topbar{position:sticky;top:0;z-index:10;background:rgba(250,249,247,0.45);backdrop-filter:blur(32px);-webkit-backdrop-filter:blur(32px);border-bottom:1px solid rgba(0,0,0,0.06);height:56px;padding:0 48px;display:flex;align-items:center}
+  .detail-topbar{position:sticky;top:0;z-index:10;background:rgba(250,249,247,0.45);backdrop-filter:blur(32px);-webkit-backdrop-filter:blur(32px);border-bottom:1px solid rgba(0,0,0,0.06);height:56px;padding:0 48px 0 16px;display:flex;align-items:center}
   .detail-back{display:inline-flex;align-items:center;gap:8px;background:none;border:none;cursor:pointer;font-size:15px;color:var(--muted);font-family:inherit;padding:10px 16px;border-radius:20px;transition:background 0.2s,color 0.2s}
   .detail-back:hover{background:var(--tag-bg);color:var(--text)}
   .detail-back-arrow{font-size:20px;line-height:1}r 0.2s}
@@ -551,7 +551,7 @@
     <!-- P1: 图左文右 -->
     <div class="project-row fade-in" style="transition-delay:0.05s" onclick="openModal('p1')">
       <div class="proj-img-wrap">
-        <div class="proj-img-inner" style="background:#f0f0f0;padding:0;overflow:hidden"><img src="https://raw.githubusercontent.com/xenodovidio/my-portfolio/main/portfolio_cover01.png" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+        <div class="proj-img-inner" style="background:#f0f0f0;padding:0;overflow:hidden"><img src="https://gitee.com/dovidio/my-portfolio/raw/master/portfolio_cover01.png" style="width:100%;height:100%;object-fit:cover;display:block"></div>
       </div>
       <div class="proj-text">
         <div class="proj-num">01 &nbsp;·&nbsp; 治理业务设计</div>
@@ -814,7 +814,7 @@ window.addEventListener('scroll', () => {
 });
 
 const p1Images = [
-  "https://raw.githubusercontent.com/xenodovidio/my-portfolio/main/portfolio_01.png"
+  "https://gitee.com/dovidio/my-portfolio/raw/master/portfolio_01.png"
 ];
 
 // ESC to close modal
