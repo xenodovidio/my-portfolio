@@ -48,7 +48,8 @@
     position:relative;z-index:2;
     display:flex;flex-direction:column;align-items:center;
     justify-content:center;text-align:center;
-    padding:120px 24px 80px;
+    padding:80px 24px 80px;
+    margin-top:-32%;
     max-width:900px;margin:0 auto;
   }
   .hero-pill{
@@ -134,7 +135,7 @@
   /* ABOUT — Resume style */
   #about{background:#eef0f5;padding:60px 48px;max-width:100%;margin:0}
   #about > .about-inner{max-width:1100px;margin:0 auto;display:flex;flex-direction:column;gap:16px}
-  .about-cols{display:grid;grid-template-columns:5fr 7fr;gap:24px;align-items:stretch}
+  .about-cols{display:grid;grid-template-columns:5fr 7fr;gap:16px;align-items:stretch}
   .about-card{background:#fff;border-radius:20px;padding:28px 32px}
 
   /* LEFT COL — profile + edu/contact */
@@ -181,7 +182,7 @@
   .exp-divider{border:none;border-top:1px solid #f2f2f2;margin:16px 0}
 
   /* Skills — full-width horizontal strip */
-  .skill-strip{margin-top:16px}
+  .skill-strip{margin-top:0}
   .skill-strip-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
   .skill-strip-row .skill-item{flex:unset}
   .skill-header{font-size:13px;font-weight:700;color:#111;display:flex;align-items:center;gap:4px;margin-bottom:14px;text-transform:uppercase;letter-spacing:0.04em}
@@ -272,13 +273,10 @@
   .contact-btn{display:inline-block;background:var(--accent);color:#fff;padding:12px 28px;border-radius:24px;font-size:13px;font-weight:500;text-decoration:none;letter-spacing:0.04em;cursor:pointer;border:none}
   .contact-links{display:flex;flex-direction:column;gap:12px;min-width:200px}
   .contact-link-row{display:flex;align-items:center;gap:12px;color:var(--muted);font-size:13px}
-  .contact-icon{width:28px;height:28px;border-radius:50%;background:#f5f5f5;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:#888}
-  .contact-icon svg{width:14px;height:14px}
-  .contact-item{display:flex;align-items:center;gap:12px;font-size:13px;color:#555}
-  .contact-link-icon{width:32px;height:32px;border-radius:8px;background:var(--tag-bg);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+  .contact-link-icon{width:32px;height:32px;border-radius:50%;background:#f5f5f5;display:flex;align-items:center;justify-content:center;color:#888;flex-shrink:0}d var(--border);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
 
   /* FOOTER */
-  footer{text-align:center;padding:40px;font-size:12px;color:var(--muted);letter-spacing:0.06em;border-top:1px solid var(--border);margin-top:0}
+  footer{text-align:center;padding:40px 48px;font-size:12px;color:var(--muted);letter-spacing:0.06em;border-top:1px solid var(--border);margin-top:0;width:100%;max-width:100%;box-sizing:border-box}
 
   /* FADE IN */
   .fade-in{opacity:0;transform:translateY(24px);transition:opacity 0.6s ease,transform 0.6s ease}
@@ -293,6 +291,8 @@
     nav{padding:0 20px;height:56px}
     .nav-inner{padding:0 !important}
     section{padding:60px 20px}
+    /* 分组标题图放大 */
+    .proj-insert-img img{width:90% !important}
     /* Hero mobile */
     .hero-headline{font-size:clamp(22px,7vw,36px) !important;font-weight:400 !important}
     .hero-inner{padding:80px 24px 40px !important;margin-top:-50% !important}
@@ -343,6 +343,11 @@
     .modal{padding:24px}
   }
 
+  @media(min-width:701px){
+    .hero-avatar-sticker{top:50% !important;left:16% !important}
+    .hero-cmd-sticker{top:36% !important;left:16% !important}
+  }
+
   #qr-modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;z-index:9999;background:rgba(255,255,255,0.7);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
   #qr-modal.open{display:flex;align-items:center;justify-content:center}
 </style>
@@ -361,7 +366,7 @@
   </div>
   <div class="nav-right">
     <div class="nav-links">
-      <a onclick="showQRCode()" id="n-contact" style="display:inline-flex;align-items:center;gap:6px;background:#f0f0f0;border-radius:40px;padding:6px 16px">
+      <a onclick="showQRCode()" id="n-contact" style="display:inline-flex;align-items:center;gap:6px;background:#f0f0f0;border-radius:40px;padding:6px 16px;cursor:pointer">
         欢迎联系我
         <svg width="27" height="27" viewBox="0 0 27 27" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M14.6122 13.7205C15.237 13.7207 15.7455 14.2284 15.7457 14.854C15.7457 15.4826 15.2373 15.9874 14.6122 15.9876C13.9844 15.9876 13.4787 15.4828 13.4787 14.854C13.479 14.2299 13.9836 13.7205 14.6122 13.7205Z" fill="black" fill-opacity="0.6"/>
@@ -371,24 +376,26 @@
 <path fill-rule="evenodd" clip-rule="evenodd" d="M9.98118 2.72727C13.925 2.72738 17.3873 5.0174 18.5028 8.34162C18.6924 8.90642 18.7489 9.47565 18.7649 9.98331C22.0063 10.4617 24.6829 12.885 24.6829 16.0813C24.6829 17.6091 24.0502 18.9847 23.0455 20.0391C23.0554 20.1411 23.0796 20.279 23.1254 20.5099C23.1687 20.7284 23.2496 21.118 23.2223 21.4943C23.1901 21.9387 22.9897 22.5268 22.354 22.8516L22.3434 22.8569C21.9411 23.057 21.5541 22.9735 21.4261 22.9432C21.2476 22.9009 21.0815 22.8322 20.9542 22.7738C20.6963 22.6555 20.409 22.4901 20.1765 22.3551C19.9356 22.2153 19.7414 22.1029 19.5842 22.0227C18.9507 22.1833 18.2829 22.272 17.5909 22.272C14.6811 22.272 12.0082 20.692 10.9645 18.3047C10.6865 18.3817 10.3593 18.4368 9.97905 18.4368C8.95615 18.4367 8.15267 18.3128 7.3402 18.0852C7.32158 18.094 7.29938 18.1024 7.27628 18.114C7.05571 18.2247 6.78361 18.389 6.45703 18.5849C6.15645 18.7652 5.79905 18.9788 5.48331 19.1293C5.32714 19.2037 5.13244 19.287 4.92827 19.337C4.77546 19.3744 4.36237 19.4605 3.9407 19.2443L3.93218 19.2411C3.53701 19.035 3.41282 18.6806 3.37713 18.5497C3.33644 18.4003 3.33576 18.2749 3.33665 18.2216C3.33858 18.1059 3.35682 18.004 3.36541 17.9584C3.38523 17.8535 3.41733 17.725 3.44212 17.6261C3.49913 17.3985 3.56365 17.1416 3.60725 16.8718C3.65185 16.5956 3.66412 16.3663 3.64347 16.1996C3.63367 16.1206 3.6192 16.0808 3.61257 16.0653C2.07476 14.6714 1.09091 12.7414 1.09091 10.5799C1.09107 6.10358 5.22387 2.72652 9.98118 2.72727ZM17.5909 12.0778C14.7079 12.0778 12.6829 14.0312 12.6829 16.0813C12.6829 18.1368 14.7086 20.0901 17.5909 20.0902C18.1843 20.0902 18.7484 20.0038 19.272 19.8484L19.4126 19.8153C19.7323 19.7606 20.002 19.8446 20.0923 19.8729C20.2494 19.9221 20.4002 19.9905 20.5217 20.0508C20.6333 20.1062 20.7527 20.1717 20.8711 20.2383C20.8639 20.163 20.8587 20.0868 20.8572 20.0114C20.8503 19.6505 20.9136 19.084 21.3718 18.6328C22.0962 17.9194 22.5011 17.0268 22.5011 16.0813C22.501 14.0317 20.477 12.0778 17.5909 12.0778ZM9.98118 4.90909C6.12684 4.90848 3.2729 7.59012 3.27273 10.5799C3.27273 12.0579 3.94387 13.4294 5.0934 14.4641C5.5776 14.9001 5.75137 15.4727 5.80824 15.9311C5.82857 16.0951 5.83223 16.2591 5.83061 16.419C5.98896 16.3274 6.14882 16.2384 6.2983 16.1634C6.45377 16.0853 6.63812 16.0024 6.82671 15.945C6.97053 15.9011 7.32357 15.8029 7.71201 15.9215C8.42161 16.1389 9.07221 16.2549 9.97905 16.255C10.2163 16.255 10.3847 16.2095 10.5032 16.1634C10.5028 16.1361 10.5011 16.1087 10.5011 16.0813C10.5011 12.8309 13.2687 10.3796 16.581 9.95987C16.5648 9.60449 16.5236 9.30338 16.434 9.03622C15.6605 6.73154 13.1332 4.9092 9.98118 4.90909Z" fill="black" fill-opacity="0.6"/>
 </svg>
       </a>
+
+</nav>
+<!-- QR Code Modal -->
+  <div id="qr-modal" onclick="hideQRCode()">
+    <div onclick="event.stopPropagation()" style="background:#fff;border-radius:24px;padding:32px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.2);max-width:280px;width:90%">
+      <img src="https://cdn.jsdelivr.net/gh/xenodovidio/my-portfolio@main/weichatcode.jpg" style="width:100%;border-radius:12px;display:block">
+      <div style="margin-top:16px;font-size:14px;color:#666">扫码添加微信</div>
+      <button onclick="hideQRCode()" style="margin-top:16px;background:#f0f0f0;border:none;border-radius:20px;padding:8px 24px;font-size:13px;cursor:pointer;font-family:inherit">关闭</button>
+    </div>
+  </div>
     </div>
   </div>
   </div>
-</nav>
-<div id="qr-modal" onclick="hideQRCode()">
-  <div onclick="event.stopPropagation()" style="background:#fff;border-radius:24px;padding:32px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.15);max-width:280px;width:90%">
-    <img src="https://cdn.jsdelivr.net/gh/xenodovidio/my-portfolio@main/weichatcode.jpg" style="width:100%;border-radius:12px;display:block">
-    <div style="margin-top:16px;font-size:14px;color:#666">扫码添加微信</div>
-    <button onclick="hideQRCode()" style="margin-top:16px;background:#f0f0f0;border:none;border-radius:20px;padding:8px 24px;font-size:13px;cursor:pointer;font-family:inherit">关闭</button>
-  </div>
-</div>
 
 <!-- HERO -->
 <div style="overflow:hidden;position:relative">
 <section id="hero">
 
   <!-- ⌘ + Z keys top-left -->
-  <div class="hero-deco hero-deco-cmd" style="top:18%;left:8%;background:transparent;border:none;box-shadow:none;width:130px">
+  <div class="hero-deco hero-deco-cmd hero-cmd-sticker" style="top:18%;left:8%;background:transparent;border:none;box-shadow:none;width:130px">
     <img src="https://cdn.jsdelivr.net/gh/xenodovidio/my-portfolio@main/newfigma.png" style="width:100%;height:auto;object-fit:contain">
   </div>
 
@@ -412,7 +419,7 @@
 
 
   <!-- Avatar sticker -->
-  <div class="hero-deco" style="top:55%;left:8%;background:transparent;border:none;box-shadow:none;width:220px">
+  <div class="hero-deco hero-avatar-sticker" style="top:55%;left:14%;background:transparent;border:none;box-shadow:none;width:176px">
     <img src="https://cdn.jsdelivr.net/gh/xenodovidio/my-portfolio@main/caton_avater_test2.svg" style="width:100%;height:auto;object-fit:contain">
   </div>
 
@@ -567,21 +574,20 @@
 
 <!-- PROJECTS -->
 <section id="projects">
-  <div class="section-label fade-in">03 &nbsp;项目目录</div>
   <div class="projects-list">
 
     <!-- P1 上方插图 -->
-    <div class="fade-in" style="text-align:center;padding:32px 0 16px">
+    <div class="fade-in proj-insert-img" style="text-align:center;padding:32px 0 16px">
       <img src="https://cdn.jsdelivr.net/gh/xenodovidio/my-portfolio@main/yewu01.png" style="width:60%;height:auto;display:inline-block">
     </div>
 
     <!-- P1: 图左文右 -->
     <div class="project-row fade-in" style="transition-delay:0.05s" onclick="openModal('p1')">
       <div class="proj-img-wrap">
-        <div class="proj-img-inner" style="background:#f0f0f0;padding:0;overflow:hidden"><img src="https://cdn.jsdelivr.net/gh/xenodovidio/my-portfolio@main/portfolio_cover01.png" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+        <div class="proj-img-inner" style="background:#f0f0f0;padding:0;overflow:hidden"><img src="https://cdn.jsdelivr.net/gh/xenodovidio/my-portfolio@main/portfolio_cover01.png?v=2" style="width:100%;height:100%;object-fit:cover;display:block"></div>
       </div>
       <div class="proj-text">
-        <div class="proj-title">降低商家理解成本的<br>治理体验优化</div>
+        <div class="proj-title">降低商家理解成本的治理体验优化</div>
         <div class="proj-desc">重新定义设计语言<br>优化整体交互链路<br>协同产研共建流程化体系为业务产出提效</div>
         <div class="proj-tags" style="margin-top:20px"><span class="proj-tag">抖音来客</span><span class="proj-tag">B端</span></div>
         <span class="proj-cta">查看案例 →</span>
@@ -591,10 +597,10 @@
     <!-- P2: 文左图右 -->
     <div class="project-row reverse fade-in" style="transition-delay:0.1s" onclick="openModal('p2')">
       <div class="proj-img-wrap">
-        <div class="proj-img-inner" style="background:#f0f0f0;padding:0;overflow:hidden"><img src="https://cdn.jsdelivr.net/gh/xenodovidio/my-portfolio@main/portfolio_cover02.png" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+        <div class="proj-img-inner" style="background:#f0f0f0;padding:0;overflow:hidden"><img src="https://cdn.jsdelivr.net/gh/xenodovidio/my-portfolio@main/portfolio_cover02.png?v=2" style="width:100%;height:100%;object-fit:cover;display:block"></div>
       </div>
       <div class="proj-text">
-        <div class="proj-title">消费者体验<br>保障升级</div>
+        <div class="proj-title">消费者体验保障升级</div>
         <div class="proj-desc">保障功能不仅仅是为交易售后兜底，而是在通过设计降低用户交易过程中的不确定性，建立信任闭环</div>
         <div class="proj-tags" style="margin-top:20px"><span class="proj-tag">抖音</span><span class="proj-tag">C端</span></div>
         <span class="proj-cta">查看案例 →</span>
@@ -602,18 +608,18 @@
     </div>
 
     <!-- P3 上方插图 -->
-    <div class="fade-in" style="text-align:center;padding:32px 0 16px">
+    <div class="fade-in proj-insert-img" style="text-align:center;padding:32px 0 16px">
       <img src="https://cdn.jsdelivr.net/gh/xenodovidio/my-portfolio@main/qitasheji.png" style="width:60%;height:auto;display:inline-block">
     </div>
 
     <!-- P3: 图左文右 -->
     <div class="project-row fade-in" style="transition-delay:0.15s" onclick="openModal('p3')">
       <div class="proj-img-wrap">
-        <div class="proj-img-inner" style="background:#f0f0f0;padding:0;overflow:hidden"><img src="https://cdn.jsdelivr.net/gh/xenodovidio/my-portfolio@main/portfolio_cover03.png" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+        <div class="proj-img-inner" style="background:#f0f0f0;padding:0;overflow:hidden"><img src="https://cdn.jsdelivr.net/gh/xenodovidio/my-portfolio@main/portfolio_cover03.png?v=2" style="width:100%;height:100%;object-fit:cover;display:block"></div>
       </div>
       <div class="proj-text">
-        <div class="proj-title">AI生图工具<br>调研与实践</div>
-        <div class="proj-desc">重新定义设计语言<br>优化整体交互链路<br>协同产研共建流程化体系为业务产出提效</div>
+        <div class="proj-title">AI生图工具调研与实践</div>
+        <div class="proj-desc">深度探索AI技术在复杂业务场景中的实战应用，落地AI海报生成工具</div>
         <div class="proj-tags" style="margin-top:20px"><span class="proj-tag">独立端</span><span class="proj-tag">VibeCoding</span></div>
         <span class="proj-cta">查看案例 →</span>
       </div>
@@ -622,10 +628,10 @@
     <!-- P3b: 农博会 文左图右 -->
     <div class="project-row reverse fade-in" style="transition-delay:0.18s" onclick="openModal('p3b')">
       <div class="proj-img-wrap">
-        <div class="proj-img-inner" style="background:#f0f0f0;padding:0;overflow:hidden"><img src="https://cdn.jsdelivr.net/gh/xenodovidio/my-portfolio@main/portfolio_cover04.png" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+        <div class="proj-img-inner" style="background:#f0f0f0;padding:0;overflow:hidden"><img src="https://cdn.jsdelivr.net/gh/xenodovidio/my-portfolio@main/portfolio_cover04.png?v=2" style="width:100%;height:100%;object-fit:cover;display:block"></div>
       </div>
       <div class="proj-text">
-        <div class="proj-title">农博会特色果蔬<br>ip设计</div>
+        <div class="proj-title">农博会特色果蔬ip设计</div>
         <div class="proj-desc">与彭集街道合作，针对当地特色果蔬进行拟人化ip角色设计、三维模型设计、表情包及绘本故事设计</div>
         <div class="proj-tags" style="margin-top:20px"><span class="proj-tag">品牌设计</span><span class="proj-tag">周边设计</span></div>
         <span class="proj-cta">查看案例 →</span>
@@ -635,10 +641,10 @@
     <!-- P4: 图左文右 -->
     <div class="project-row fade-in" style="transition-delay:0.2s" onclick="openModal('p4')">
       <div class="proj-img-wrap">
-        <div class="proj-img-inner" style="background:#f0f0f0;padding:0;overflow:hidden"><img src="https://cdn.jsdelivr.net/gh/xenodovidio/my-portfolio@main/portfolio_cover05.png" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+        <div class="proj-img-inner" style="background:#f0f0f0;padding:0;overflow:hidden"><img src="https://cdn.jsdelivr.net/gh/xenodovidio/my-portfolio@main/portfolio_cover05.png?v=2" style="width:100%;height:100%;object-fit:cover;display:block"></div>
       </div>
       <div class="proj-text">
-        <div class="proj-title">HMI车载交互<br>系统设计</div>
+        <div class="proj-title">HMI车载交互系统设计</div>
         <div class="proj-desc">基于8155型号的芯片进行仪表、HUD、中控屏、娱乐屏的全方案设计。定义全新的交互框架以及3D动效，重点在于突出智能系统的差异化，打造3D与2D融合的流畅体验</div>
         <div class="proj-tags" style="margin-top:20px"><span class="proj-tag">车载端</span><span class="proj-tag">HMI</span></div>
         <span class="proj-cta">查看案例 →</span>
@@ -650,17 +656,17 @@
 
 <!-- CONTACT -->
 <section id="contact" style="padding-bottom:60px">
-  <div class="contact-card fade-in" style="display:grid;grid-template-columns:1fr auto 1fr;gap:0;align-items:center;padding:80px 60px">
+  <div class="contact-card fade-in" style="display:grid;grid-template-columns:1fr auto 1fr;gap:0;align-items:center;padding:clamp(32px,6vw,80px) clamp(20px,5vw,60px)">
 
     <!-- 左：文字 -->
     <div>
-      <div style="font-size:clamp(32px,4vw,52px);font-weight:400;line-height:1.2;margin-bottom:16px;font-family:'Noto Sans SC',sans-serif">Thanks for reading</div>
-      <div style="font-size:18px;color:#666;margin-bottom:8px">感谢阅读</div>
-      <div style="font-size:16px;color:#999">有好的机会？欢迎联系我 ～</div>
+      <div style="font-size:clamp(24px,4vw,52px);font-weight:400;line-height:1.2;margin-bottom:16px;font-family:'Noto Sans SC',sans-serif">Thanks for reading</div>
+      <div style="font-size:clamp(13px,3vw,18px);color:#666;margin-bottom:8px">感谢阅读</div>
+      <div style="font-size:clamp(12px,2.5vw,16px);color:#999">有好的机会？欢迎联系我 ～</div>
     </div>
 
     <!-- 中：分割线 -->
-    <div style="width:1px;background:#e0e0e0;height:140px;margin:0 60px"></div>
+    <div style="width:1px;background:#e0e0e0;height:140px;margin:0 clamp(16px,4vw,60px)"></div>
 
     <!-- 右：联系方式 -->
     <div style="display:flex;flex-direction:column;gap:20px">
@@ -681,9 +687,7 @@
   </div>
 </section>
 
-<footer>
-  © 2026 陈梦阳 · Design Portfolio &nbsp;·&nbsp; 产品体验设计师
-</footer>
+
 
 <!-- DETAIL PAGE -->
 <div class="detail-page" id="detail-page">
@@ -754,48 +758,48 @@ function openModal(id) {
   const p = projects[id];
   let inner = '';
   if (id === 'p1') {
-    inner = `
-      <div class="modal-tag">${p.tag}</div>
-      <div class="modal-title">${p.title}</div>
-      <div style="margin-top:16px;display:flex;flex-direction:column;gap:16px">
+    inner = `      <div style="margin-top:16px;display:flex;flex-direction:column;gap:16px">
         ${p1Images.map(src => `<img src="${src}" style="width:100%;border-radius:14px;display:block">`).join('')}
       </div>
     `;
   } else if (id === 'p2') {
-    inner = `
-      <div class="modal-tag">${p.tag}</div>
-      <div class="modal-title">${p.title}</div>
-      <div style="margin-top:16px;display:flex;flex-direction:column;gap:16px">
+    inner = `      <div style="margin-top:16px;display:flex;flex-direction:column;gap:16px">
         <img src="https://cdn.jsdelivr.net/gh/xenodovidio/my-portfolio@main/portfolio_02.png" style="width:100%;border-radius:14px;display:block">
       </div>
     `;
   } else if (id === 'p3') {
-    inner = `
-      <div class="modal-tag">${p.tag}</div>
-      <div class="modal-title">${p.title}</div>
-      <div style="margin-top:16px;display:flex;flex-direction:column;gap:16px">
+    inner = `      <div style="margin-top:16px;display:flex;flex-direction:column;gap:16px">
         <img src="https://cdn.jsdelivr.net/gh/xenodovidio/my-portfolio@main/portfolio_03.png" style="width:100%;border-radius:14px;display:block">
       </div>
     `;
   } else if (id === 'p3b') {
-    inner = `
-      <div class="modal-tag">${p.tag}</div>
-      <div class="modal-title">${p.title}</div>
-      <div style="margin-top:16px;display:flex;flex-direction:column;gap:16px">
+    inner = `      <div style="margin-top:16px;display:flex;flex-direction:column;gap:16px">
         <img src="https://cdn.jsdelivr.net/gh/xenodovidio/my-portfolio@main/portfolio_04.png" style="width:100%;border-radius:14px;display:block">
       </div>
     `;
   } else if (id === 'p4') {
-    const hmiImages = ['HMI_01','HMI_02','HMI_03','HMI_04','HMI_05','HMI_06','HMI_07','HMI_08','HMI_09','HMI_10','HMI_11','HMI_12','HMI_13','HMI_14'].map(n => `https://cdn.jsdelivr.net/gh/xenodovidio/my-portfolio@main/portfolio05/${n}.jpg`);
+    const hmiImages = [
+      'https://cdn.jsdelivr.net/gh/xenodovidio/my-portfolio@main/portfolio05/HMI_01.jpg',
+      'https://cdn.jsdelivr.net/gh/xenodovidio/my-portfolio@main/portfolio05/HMI_02.jpg',
+      'https://cdn.jsdelivr.net/gh/xenodovidio/my-portfolio@main/portfolio05/HMI_03.jpg',
+      'https://cdn.jsdelivr.net/gh/xenodovidio/my-portfolio@main/portfolio05/HMI_04.jpg',
+      'https://cdn.jsdelivr.net/gh/xenodovidio/my-portfolio@main/portfolio05/HMI_05.jpg',
+      'https://cdn.jsdelivr.net/gh/xenodovidio/my-portfolio@main/portfolio05/HMI_06.jpg',
+      'https://cdn.jsdelivr.net/gh/xenodovidio/my-portfolio@main/portfolio05/HMI_07.jpg',
+      'https://cdn.jsdelivr.net/gh/xenodovidio/my-portfolio@main/portfolio05/HMI_08.jpg',
+      'https://cdn.jsdelivr.net/gh/xenodovidio/my-portfolio@main/portfolio05/HMI_09.jpg',
+      'https://cdn.jsdelivr.net/gh/xenodovidio/my-portfolio@main/portfolio05/HMI_10.jpg',
+      'https://cdn.jsdelivr.net/gh/xenodovidio/my-portfolio@main/portfolio05/HMI_11.jpg',
+      'https://cdn.jsdelivr.net/gh/xenodovidio/my-portfolio@main/portfolio05/HMI_12.jpg',
+      'https://cdn.jsdelivr.net/gh/xenodovidio/my-portfolio@main/portfolio05/HMI_13.jpg',
+      'https://cdn.jsdelivr.net/gh/xenodovidio/my-portfolio@main/portfolio05/HMI_14.jpg',
+    ];
     inner = `      <div style="display:flex;flex-direction:column;gap:0">
-        ${hmiImages.map(src => `<img src="${src}" style="width:100%;display:block">`).join('')}
+        ${hmiImages.map(src => `<img src="${src}" style="width:100%;display:block;border-radius:0">`).join('')}
       </div>
     `;
-    } else {
-    inner = `
-      <div class="modal-tag">${p.tag}</div>
-      <div class="modal-title">${p.title}</div>
-      <div class="modal-img" style="background:${p.bg}"><span style="font-size:72px">${p.emoji}</span></div>
+  } else {
+    inner = `      <div class="modal-img" style="background:${p.bg}"><span style="font-size:72px">${p.emoji}</span></div>
       <div class="modal-metrics">${p.metrics.map(m=>`<div class="modal-metric"><div class="modal-metric-num">${m.n}</div><div class="modal-metric-label">${m.l}</div></div>`).join('')}</div>
       <div class="modal-section"><div class="modal-section-title">设计挑战</div><div class="modal-text">${p.challenge}</div></div>
       <div class="modal-section"><div class="modal-section-title">设计方案</div><div class="modal-text">${p.solution}</div></div>
@@ -831,7 +835,7 @@ window.addEventListener('scroll', () => {
   document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
   ids.forEach((id, i) => {
     const el = document.getElementById(id);
-    if (el && el.offsetTop - 100 <= s) document.getElementById(ns[i]).classList.add('active');
+    const nel = document.getElementById(ns[i]); if (el && nel && el.offsetTop - 100 <= s) nel.classList.add('active');
   });
 });
 
