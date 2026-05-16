@@ -449,7 +449,7 @@
   </div>
 
   <!-- version tag -->
-  <div style="position:absolute;bottom:32px;right:48px;font-size:11px;color:#bbb;letter-spacing:0.08em;z-index:2;font-family:monospace">v1.0.3</div>
+  <div style="position:absolute;bottom:32px;right:48px;font-size:11px;color:#bbb;letter-spacing:0.08em;z-index:2;font-family:monospace">v1.0.5</div>
 
 </section>
 </div>
@@ -692,10 +692,6 @@
 
 
 
-<!-- TEST IMAGE -->
-<div style="max-width:1100px;margin:0 auto;padding:0 48px 40px">
-  <img src="https://cdn.jsdelivr.net/gh/xenodovidio/my-portfolio@main/portfolio/portfolio_01.png" style="width:100%;border-radius:14px;display:block">
-</div>
 <div class="detail-page" id="detail-page">
   <div class="detail-topbar">
     <button class="detail-back" onclick="closeDetail()">
@@ -768,7 +764,14 @@ function openModal(id) {
   document.body.style.overflow = 'hidden';
   detailPage.scrollTop = 0;
 
-  const fileMap = { p1:'p1.html', p2:'p2.html', p3:'p3.html', p3b:'p3b.html', p4:'p4.html' };
+  if (id === 'p1') {
+    detailContent.innerHTML = `<div style="margin-top:16px;width:100%;height:80vh;min-height:600px">
+      <iframe style="width:100%;height:100%;border:none;border-radius:14px" src="https://www.figma.com/embed?embed_host=share&hide-ui=1&url=https://www.figma.com/proto/6RHUrxRZfTSch6nLOnP0ey/1%EF%B8%8F%E2%83%A3-%E9%82%A3%E4%BD%A0%E5%B0%B1%E6%98%AF%E7%AC%AC%E4%B8%80%E4%BC%98%E5%85%88%E7%BA%A7?node-id=600-37395&viewport=414%2C40%2C0.05&t=2tPnd4IKg4BsZ5E7-1&scaling=scale-down-width&content-scaling=fixed&page-id=600%3A37391" allowfullscreen></iframe>
+    </div>`;
+    return;
+  }
+
+  const fileMap = { p2:'p2.html', p3:'p3.html', p3b:'p3b.html', p4:'p4.html' };
   fetch(fileMap[id])
     .then(r => r.text())
     .then(html => { detailContent.innerHTML = html; })
