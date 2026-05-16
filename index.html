@@ -449,7 +449,7 @@
   </div>
 
   <!-- version tag -->
-  <div style="position:absolute;bottom:32px;right:48px;font-size:11px;color:#bbb;letter-spacing:0.08em;z-index:2;font-family:monospace">v1.0.8</div>
+  <div style="position:absolute;bottom:32px;right:48px;font-size:11px;color:#bbb;letter-spacing:0.08em;z-index:2;font-family:monospace">v1.0.9</div>
 
 </section>
 </div>
@@ -775,7 +775,7 @@ function openModal(id) {
     detailContent.innerHTML = `<div style="margin-top:16px"><img src="${cos}/portfolio_04.png" style="width:100%;display:block;border-radius:14px"></div>`;
   } else if (id === 'p4') {
     const imgs = [1,2,3,4,5,6,7,8,9,10,11,12,13,14].map(n =>
-      `<img src="${cos}/portfolio_05_HMI_0${n<10?'0'+n:n}.jpg" style="width:100%;display:block">`
+      `<img src="${cos}/portfolio_05HMI_页面_${n<10?'0'+n:n}.jpg" style="width:100%;display:block">`
     ).join('');
     detailContent.innerHTML = `<div style="display:flex;flex-direction:column;gap:0">${imgs}</div>`;
   }
