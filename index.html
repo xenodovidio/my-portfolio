@@ -449,7 +449,7 @@
   </div>
 
   <!-- version tag -->
-  <div style="position:absolute;bottom:32px;right:48px;font-size:11px;color:#bbb;letter-spacing:0.08em;z-index:2;font-family:monospace">v1.0.1</div>
+  <div style="position:absolute;bottom:32px;right:48px;font-size:11px;color:#bbb;letter-spacing:0.08em;z-index:2;font-family:monospace">v1.0.2</div>
 
 </section>
 </div>
@@ -758,61 +758,18 @@ const projects = {
 
 
 function openModal(id) {
-  const p = projects[id];
-  let inner = '';
-  if (id === 'p1') {
-    inner = `      <div style="margin-top:16px;display:flex;flex-direction:column;gap:16px">
-        ${p1Images.map(src => `<img src="${src}" style="width:100%;border-radius:14px;display:block">`).join('')}
-      </div>
-    `;
-  } else if (id === 'p2') {
-    inner = `      <div style="margin-top:16px;display:flex;flex-direction:column;gap:16px">
-        <img src="https://cdn.jsdelivr.net/gh/xenodovidio/my-portfolio@main/portfolio/portfolio_02.png" style="width:100%;border-radius:14px;display:block">
-      </div>
-    `;
-  } else if (id === 'p3') {
-    inner = `      <div style="margin-top:16px;display:flex;flex-direction:column;gap:16px">
-        <img src="https://cdn.jsdelivr.net/gh/xenodovidio/my-portfolio@main/portfolio/portfolio_03.png" style="width:100%;border-radius:14px;display:block">
-      </div>
-    `;
-  } else if (id === 'p3b') {
-    inner = `      <div style="margin-top:16px;display:flex;flex-direction:column;gap:16px">
-        <img src="https://cdn.jsdelivr.net/gh/xenodovidio/my-portfolio@main/portfolio/portfolio_04.png" style="width:100%;border-radius:14px;display:block">
-      </div>
-    `;
-  } else if (id === 'p4') {
-    const hmiImages = [
-      'https://cdn.jsdelivr.net/gh/xenodovidio/my-portfolio@main/portfolio/portfolio_05/HMI_01.jpg',
-      'https://cdn.jsdelivr.net/gh/xenodovidio/my-portfolio@main/portfolio/portfolio_05/HMI_02.jpg',
-      'https://cdn.jsdelivr.net/gh/xenodovidio/my-portfolio@main/portfolio/portfolio_05/HMI_03.jpg',
-      'https://cdn.jsdelivr.net/gh/xenodovidio/my-portfolio@main/portfolio/portfolio_05/HMI_04.jpg',
-      'https://cdn.jsdelivr.net/gh/xenodovidio/my-portfolio@main/portfolio/portfolio_05/HMI_05.jpg',
-      'https://cdn.jsdelivr.net/gh/xenodovidio/my-portfolio@main/portfolio/portfolio_05/HMI_06.jpg',
-      'https://cdn.jsdelivr.net/gh/xenodovidio/my-portfolio@main/portfolio/portfolio_05/HMI_07.jpg',
-      'https://cdn.jsdelivr.net/gh/xenodovidio/my-portfolio@main/portfolio/portfolio_05/HMI_08.jpg',
-      'https://cdn.jsdelivr.net/gh/xenodovidio/my-portfolio@main/portfolio/portfolio_05/HMI_09.jpg',
-      'https://cdn.jsdelivr.net/gh/xenodovidio/my-portfolio@main/portfolio/portfolio_05/HMI_10.jpg',
-      'https://cdn.jsdelivr.net/gh/xenodovidio/my-portfolio@main/portfolio/portfolio_05/HMI_11.jpg',
-      'https://cdn.jsdelivr.net/gh/xenodovidio/my-portfolio@main/portfolio/portfolio_05/HMI_12.jpg',
-      'https://cdn.jsdelivr.net/gh/xenodovidio/my-portfolio@main/portfolio/portfolio_05/HMI_13.jpg',
-      'https://cdn.jsdelivr.net/gh/xenodovidio/my-portfolio@main/portfolio/portfolio_05/HMI_14.jpg',
-    ];
-    inner = `      <div style="display:flex;flex-direction:column;gap:0">
-        ${hmiImages.map(src => `<img src="${src}" style="width:100%;display:block;border-radius:0">`).join('')}
-      </div>
-    `;
-  } else {
-    inner = `      <div class="modal-img" style="background:${p.bg}"><span style="font-size:72px">${p.emoji}</span></div>
-      <div class="modal-metrics">${p.metrics.map(m=>`<div class="modal-metric"><div class="modal-metric-num">${m.n}</div><div class="modal-metric-label">${m.l}</div></div>`).join('')}</div>
-      <div class="modal-section"><div class="modal-section-title">设计挑战</div><div class="modal-text">${p.challenge}</div></div>
-      <div class="modal-section"><div class="modal-section-title">设计方案</div><div class="modal-text">${p.solution}</div></div>
-      <div class="modal-section"><div class="modal-section-title">设计成果</div><div class="modal-text">${p.result}</div></div>
-    `;
-  }
-  document.getElementById('detail-content').innerHTML = inner;
-  document.getElementById('detail-page').classList.add('open');
+  const detailPage = document.getElementById('detail-page');
+  const detailContent = document.getElementById('detail-content');
+  detailContent.innerHTML = '<div style="text-align:center;padding:80px 0;color:#aaa;font-size:13px">加载中…</div>';
+  detailPage.classList.add('open');
   document.body.style.overflow = 'hidden';
-  document.getElementById('detail-page').scrollTop = 0;
+  detailPage.scrollTop = 0;
+
+  const fileMap = { p1:'p1.html', p2:'p2.html', p3:'p3.html', p3b:'p3b.html', p4:'p4.html' };
+  fetch(fileMap[id])
+    .then(r => r.text())
+    .then(html => { detailContent.innerHTML = html; })
+    .catch(() => { detailContent.innerHTML = '<div style="text-align:center;padding:80px 0;color:#aaa;font-size:13px">加载失败，请刷新重试</div>'; });
 }
 
 function closeDetail() {
