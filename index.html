@@ -449,7 +449,7 @@
   </div>
 
   <!-- version tag -->
-  <div style="position:absolute;bottom:32px;right:48px;font-size:11px;color:#bbb;letter-spacing:0.08em;z-index:2;font-family:monospace">v1.0.5</div>
+  <div style="position:absolute;bottom:32px;right:48px;font-size:11px;color:#bbb;letter-spacing:0.08em;z-index:2;font-family:monospace">v1.0.8</div>
 
 </section>
 </div>
@@ -759,23 +759,26 @@ const projects = {
 function openModal(id) {
   const detailPage = document.getElementById('detail-page');
   const detailContent = document.getElementById('detail-content');
-  detailContent.innerHTML = '<div style="text-align:center;padding:80px 0;color:#aaa;font-size:13px">加载中…</div>';
   detailPage.classList.add('open');
   document.body.style.overflow = 'hidden';
   detailPage.scrollTop = 0;
 
-  if (id === 'p1') {
-    detailContent.innerHTML = `<div style="margin-top:16px;width:100%;height:80vh;min-height:600px">
-      <iframe style="width:100%;height:100%;border:none;border-radius:14px" src="https://www.figma.com/embed?embed_host=share&hide-ui=1&url=https://www.figma.com/proto/6RHUrxRZfTSch6nLOnP0ey/1%EF%B8%8F%E2%83%A3-%E9%82%A3%E4%BD%A0%E5%B0%B1%E6%98%AF%E7%AC%AC%E4%B8%80%E4%BC%98%E5%85%88%E7%BA%A7?node-id=600-37395&viewport=414%2C40%2C0.05&t=2tPnd4IKg4BsZ5E7-1&scaling=scale-down-width&content-scaling=fixed&page-id=600%3A37391" allowfullscreen></iframe>
-    </div>`;
-    return;
-  }
+  const cos = 'https://portfolio-images-1433827621.cos.ap-shanghai.myqcloud.com';
 
-  const fileMap = { p2:'p2.html', p3:'p3.html', p3b:'p3b.html', p4:'p4.html' };
-  fetch(fileMap[id])
-    .then(r => r.text())
-    .then(html => { detailContent.innerHTML = html; })
-    .catch(() => { detailContent.innerHTML = '<div style="text-align:center;padding:80px 0;color:#aaa;font-size:13px">加载失败，请刷新重试</div>'; });
+  if (id === 'p1') {
+    detailContent.innerHTML = `<div style="margin-top:16px"><img src="${cos}/portfolio_01.png" style="width:100%;display:block;border-radius:14px"></div>`;
+  } else if (id === 'p2') {
+    detailContent.innerHTML = `<div style="margin-top:16px"><img src="${cos}/portfolio_02.png" style="width:100%;display:block;border-radius:14px"></div>`;
+  } else if (id === 'p3') {
+    detailContent.innerHTML = `<div style="margin-top:16px"><img src="${cos}/portfolio_03.png" style="width:100%;display:block;border-radius:14px"></div>`;
+  } else if (id === 'p3b') {
+    detailContent.innerHTML = `<div style="margin-top:16px"><img src="${cos}/portfolio_04.png" style="width:100%;display:block;border-radius:14px"></div>`;
+  } else if (id === 'p4') {
+    const imgs = [1,2,3,4,5,6,7,8,9,10,11,12,13,14].map(n =>
+      `<img src="${cos}/portfolio_05_HMI_0${n<10?'0'+n:n}.jpg" style="width:100%;display:block">`
+    ).join('');
+    detailContent.innerHTML = `<div style="display:flex;flex-direction:column;gap:0">${imgs}</div>`;
+  }
 }
 
 function closeDetail() {
